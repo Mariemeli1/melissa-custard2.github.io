@@ -21,13 +21,19 @@
 
 function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
-    
-    
+    //created a variable and set it to a empty string
+    var output = "";
+    //created a for loop inversed
+    for(let i = input.length - 1; i >= 0; i--){
+      //added and assigned output to input[i]
+       output += input[i];
+    }
+    //return output
+    return output;
+  
     // YOUR CODE GOES ABOVE HERE //
 }
-
+console.log(reverseString('baby'));
 
 
 
