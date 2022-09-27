@@ -14,7 +14,11 @@
  */
 function isArray(value) {
     // YOUR CODE BELOW HERE //
-    
+    if(Array.isArray(value)){
+        return true;
+    } else { 
+        return false;
+    }
     
     
     
@@ -31,9 +35,28 @@ function isArray(value) {
  */
 function isObject(value) {
     // YOUR CODE BELOW HERE //
+
+    if(typeof value === Object || Array.isArray(value)){
+        return true;
+    } 
+    if(typeof value === Object){
+
+    }
+    if(typeof value !== null){
+
+    }
+    if(!Array.isArray(value)){
+
+    }
+    if(value instanceof Date){
+
+    }else {
+        return false;
+    }
+      
     
-    
-    
+      
+
     
     // YOUR CODE ABOVE HERE //
 }
@@ -75,7 +98,31 @@ function isCollection(value) {
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    if(Array.isArray(value)) {
+        return 'array';
+      } //if value is null return its value as a string ('null')
+      if(value === null) {
+        return 'null';
+      }//if type of value is object return its value as a string ('object')
+      if(typeof value === 'object' ) {
+        return 'object';
+      }//if type of value is a function return its value as a string(' function')
+       if(typeof value === 'function') {
+        return 'function';
+       }//if type of value is a string return its value as a ('string')
+       if(typeof value === 'string') {
+         return 'string';
+       } //if value is true or value is false return the type of value as a string('boolean')
+       if(value === true || value === false) {
+         return 'boolean';
+       }//if value is undefined return its value as a string('undefined')
+       if(value === undefined) {
+         return 'undefined';
+       }//if type of value is a number return the type of value as a string
+       if(typeof value === 'number') {
+         return 'number';    
+       }
+
     
     
     // YOUR CODE ABOVE HERE //
