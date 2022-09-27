@@ -12,9 +12,23 @@
 */
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
-
-
-
+    // creating a for loop to get the numbers 1 - 100
+    for (let i = 1; i <= 100; i++) {
+        //determining if there are multiples of 3 and 5 if so, print "FizzBuzz"
+        if (i % 3 == 0 && i % 5 == 0){
+            console.log("FizzBuzz");
+        //determining if there are multiples of 3, if so, print "Fizz"
+        }else if (i % 3 == 0){
+            console.log("Fizz");
+        //determining if there are multiples of 5, if so, print "Buzz"
+        }else if (i % 5 == 0){
+            console.log("Buzz");
+        } else {
+            //printing numbers 1 - 100 to the console
+            console.log(i);
+        }
+       
+    }
     // YOUR CODE GOES ABOVE HERE //
 }
 

@@ -189,14 +189,8 @@ if(stringOne.length > stringTwo.length){
  */
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-if(stringOne.sort() > stringTwo.sort()){
-    return 1
-} else if(stringTwo.sort() > stringOne.sort()){
-    return -1
-} else{
-    return 0;
-}
 
+  return stringTwo.localeCompare(stringOne);
 
     // YOUR CODE ABOVE HERE //
 }
@@ -212,7 +206,7 @@ if(stringOne.sort() > stringTwo.sort()){
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
-
+    return stringOne.localeCompare(stringTwo);
 
 
     // YOUR CODE ABOVE HERE //
