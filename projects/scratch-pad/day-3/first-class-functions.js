@@ -96,8 +96,15 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    
-    
+    //create a variable and set it to an array that will later be returned
+   var output = [];
+   //loop through the input string array
+   for(let i = 0; i < strings.length; i++){
+    //push the modify function into the output array with each string passed in it
+    output.push(modify(strings[i]))
+   } 
+   //returnthe new output array
+    return output;
     
     
     // YOUR CODE ABOVE HERE //
@@ -114,8 +121,24 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
-    
+    //created a count variable and set it to 0
+    var count = 0;
+    // created a vairable truth and set it to false
+    var truth = false;
+      //iterate through the input strings array
+    for(let i = 0; i < strings.length; i++){
+        //passsed in each string to the test function to get a truthy value
+        if(test(strings[i])){
+            // if the if statement is true count will increase to 1
+            count++
+        }
+    }
+    //determining of count is equal to strings length
+    if(count === strings.length){
+        //reassigning truth to true
+        truth = true;
+    }//return truth
+    return truth;
     
     
     // YOUR CODE ABOVE HERE //
