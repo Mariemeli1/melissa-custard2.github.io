@@ -36,7 +36,7 @@ function isArray(value) {
 function isObject(value) {
     // YOUR CODE BELOW HERE //
 
-    if(typeof value === Object || value !== null || !Array.isArray(value) || !value instanceof Date){
+    if(typeof value === 'object' && value !== null && !Array.isArray(value) && !(value instanceof Date)){
         return true;
       }else {
         return false;
@@ -52,10 +52,13 @@ function isObject(value) {
  */
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
-    if(Array.isArray(value))
-    return true;
-    
-    
+    if(typeof value === 'object' &&  value !== null && !(value instanceof Date)){
+      return true
+    }else if(Array.isArray(value)) {
+      return true;
+    } else {
+      return false;
+    }
     // YOUR CODE ABOVE HERE //
 }
 
@@ -80,34 +83,33 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
-    
-    if(Array.isArray(value)) {
-        return 'array';
-      } //if value is null return its value as a string ('null')
-      if(value === null) {
-        return 'null';
-      }//if type of value is object return its value as a string ('object')
-      if(typeof value === 'object' ) {
-        return 'object';
-      }//if type of value is a function return its value as a string(' function')
-       if(typeof value === 'function') {
-        return 'function';
-       }//if type of value is a string return its value as a ('string')
-       if(typeof value === 'string') {
-         return 'string';
-       } //if value is true or value is false return the type of value as a string('boolean')
-       if(value === true || value === false) {
-         return 'boolean';
-       }//if value is undefined return its value as a string('undefined')
-       if(value === undefined) {
-         return 'undefined';
-       }//if type of value is a number return the type of value as a string
-       if(typeof value === 'number') {
-         return 'number';    
-       }
-       if(value instanceof Date){
-        return 'date';
-       }
+    //if type of value is string return a string of string
+    if (typeof(value) === "string") {
+      return "string";
+      //else if type of value is number return the value as a string
+  } else if (typeof(value) === "number") {
+      return "number";
+      //else if type of value is boolean return the value as a string
+  } else if (typeof(value) === "boolean") {
+      return "boolean";
+      //else if type of value is instanceof date return the value as a string
+  } else if (value instanceof Date) {
+      return "date";
+      //else if type of value is an array return the value as a string
+  } else if (isArray(value) === true) {
+      return "array";
+      //else if type of value is an object return the value as a string
+  } else if (isObject(value) === true) {
+      return "object";
+      //else if type of value is undefined return the value as a string
+  } else if (typeof(value) === "undefined") {
+      return "undefined";
+      //else if type of value is a function return the value as a string
+  } else if (typeof(value) === "function") {
+      return "function";
+  } else { //else return null
+      return "null";
+  }
 
     
     

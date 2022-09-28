@@ -13,10 +13,13 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
+    //returning a function that takes a value of a string or number as its parameter
     return function child(value){
+        //determining if value is greater than base
         if(value > base){
+            //if true return true
             return true;
-        } else {
+        } else {//else return false
             return false;
         }
         
@@ -34,6 +37,7 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
+    //returning a function that takes in a parameter of a string or number
     return function baby(val){
         if(val < base){
             return true;
@@ -55,9 +59,12 @@ function createLessThanFilter(base) {
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     return function littleOne(str){
+        //determining if the first character in string 
+        //is the same as startsWith character and using toLowercase for the case insensitive 
         if(str[0].toLowerCase() === startsWith.toLowerCase()){
+            //returning true if true
             return true;
-        } else{
+        } else{ //else returning false
             return false;
         }
     }
@@ -74,10 +81,14 @@ function createStartsWithFilter(startsWith) {
  */
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
+    //returning s function with a string passed it
     return function tinyOne(string){
+        //determining if the last character in string 
+        //is the same as endsWith character and using toUpperCase for the case insensitive 
         if(string[string.length - 1].toUpperCase() === endsWith.toUpperCase()){
+            //returning true if true
             return true;
-        } else{
+        } else{ //else returning false
             return false;
         }
     } 
