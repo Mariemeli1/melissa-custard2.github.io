@@ -85,13 +85,14 @@ function makeContactList() {
         },
         printAllContactNames: function(){
             //creating a string to later return
-            var str = " ";
+            var str = "";
             //looping through the contacts list to get the first and last name
-            for(let i = 0; i< contacts.length; i++){
-                str += contacts[i].nameFirst + " " + contacts[i].nameLast + "\n";
-                str.split("$");
+            for(let i = 0; i < contacts.length; i++){
+         //adding and assigning  first name and last to my string variable and adding a newline character
+                str += contacts[i].nameFirst + " " + contacts[i].nameLast + "\n";  
             }
-            return str;
+            //returning my string sliced to remove the new line character from the last full name line
+            return str.slice(0, -1);
         }
 
 
