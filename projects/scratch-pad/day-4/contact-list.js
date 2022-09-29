@@ -37,11 +37,14 @@
 function makeContact(id, nameFirst, nameLast) {
     //create a object that you will later return
     var obj = {};
+    //creating a key property of id with a value of the id parameter
     obj.id = id;
+    //creating a key property of nameFirst with a value of the nameFirst parameter
     obj.nameFirst = nameFirst;
+    //creating a key property of nameLast with a value of the nameLast parameter
     obj.nameLast = nameLast;
+    //return obj object
     return obj;
-
 } 
 
 
@@ -49,22 +52,48 @@ function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts = [];
+    var contacts = []; //assigned contacts variable to an array
     
     return {
         // we implemented the length api for you //
         length: function() {
+            //returning contacts length
             return contacts.length;
         },
         addContact: function(contact){
+            //push contact object to add it to contacts list
             contacts.push(contact);
         },
         findContact: function(fullName){
+            //creating a variable and using split method to seperate the full name into two strings
+            var array = fullName.split(" ");
          //iterate through contacts using a for loop
          for(let i = 0; i < contacts.length; i++){
-            
+            console.log(contacts[i])
+            //determining if nameFirst and nameLast aka fulllName is in contactslist
+            if(contacts[i]['nameFirst'] === array[0] && contacts[i]['nameLast'] === array[1]){
+                //return contacts object if fullName is found
+                return contacts[i];
+            } else { //else return undefined
+                return undefined;
+            }
          }
         },
+        removeContact: function(contact){
+            //removing contact object off of contacts list using the pop method
+            contacts.pop(contact);
+        },
+        printAllContactNames: function(){
+            //creating a string to later return
+            var str = " ";
+            //looping through the contacts list to get the first and last name
+            for(let i = 0; i< contacts.length; i++){
+                str += contacts[i].nameFirst + " " + contacts[i].nameLast + "\n";
+                str.split("$");
+            }
+            return str;
+        }
+
 
     }
 }
