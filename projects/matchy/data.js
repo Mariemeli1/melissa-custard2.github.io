@@ -104,13 +104,15 @@ animals.push(pig);
 //////////////////////////////////////////////////////////////////////
 
 //assigning friends to an array because arrays hold lists
-
+//created a variable named friends and set it to an array
 var friends = [];
-
+//created a function called getrandom that takes in my animals array as its parameter
 function getRandom(anims){
-  return Math.random(friends.push(anims.name));
+  //getting a random index of my input array using Math.random and returning it
+  return Math.floor(Math.random() * anims.length);
 }
-
+friends.push(getRandom());
+console.log(friends);
 
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and
