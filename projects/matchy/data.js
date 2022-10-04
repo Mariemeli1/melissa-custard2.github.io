@@ -11,10 +11,15 @@
 //////////////////////////////////////////////////////////////////////
 // Step 1 - Object Creation //////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+//creating a object named animal
 var animal = {};
+//adding a property of species witha value of chicken
 animal.species = "chicken";
+//adding a property of name with a value of Benny
 animal['name'] = 'Benny';
+//adding a property of noises and set it to an empty array
 animal.noises = [];
+//checking my array
 console.log(animal);
 
 
@@ -22,24 +27,32 @@ console.log(animal);
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Array Creation ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+//created a noises array
 var noises = [];
-
+//added bock to front of array
 noises[0] = 'bock';
+//pushed woof to my noises array
 noises.push('woof');
+//added meow to the front of my array
 noises.unshift('meow');
+//added arrr to the end of my array
 noises[noises.length] = 'arrr';
-
+//logged the length of my array to the console
 console.log(noises.length);
+//logged the last element of my array to the console
 console.log(noises.length-1);
+//logged my array to the console
 console.log(noises);
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 3 - Combining Step 1 and 2 ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+//adding a property of noises with a value of noised
 animal['noises'] = noises;
+//pushing eee to my noises
 animal.noises.push('eee');
-
+///checking my array
 console.log(animal);
 
 
@@ -111,8 +124,18 @@ function getRandom(anims){
   //getting a random index of my input array using Math.random and returning it
   return Math.floor(Math.random() * anims.length);
 }
-friends.push(getRandom());
+//set my function call to a variable
+var arr = getRandom(animals);
+//pushing a random animals name to my friends array
+friends.push(animals[arr].name)
+//checking my friends array
 console.log(friends);
+//iterating through my animals array
+for(let i = 0; i < animals.length; i++){
+  //adding a property of friends to the current animal in my animals array with a value of friends
+  animals[i].friends = friends;
+}
+console.log(animals);
 
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and
