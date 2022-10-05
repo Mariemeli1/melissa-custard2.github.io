@@ -65,25 +65,20 @@ function remove(animals, name){
 
 //create a function called add that takes in 2 parameters: an array, an object
 function add(animals, animal){
-    //setting a variable of truth to false
-    var truth = false;
-         //iterating through my animals array
+    //checking in the length of my animal name and species length is greater than 0
+    if(animal.name.length > 0 && animal.species.length > 0){
+        //iterating through my animals array
         for(let i = 0; i < animals.length; i++){
-            //checking if my an animal with that name exists 
-            if(animals[i].name === animal.name){
-                //assigning truth to true
-            truth = true;
+            //checking if animal doesnt have the same name as other animals
+            if(animals[i].name !== animal.name){
+           //pushing my animal object into my array of animals
+                animals.push(animal);
+            } else { //else
+                return false; //return false
             }
         }
-        //if truth is strictly equal to false
-        if(truth === false){
-         //determining if an animal with the name and species property is greater than 0
-         if(animal.name.length > 0 && animal.species.length > 0){
-            //pushing my animal object into my array of animals
-            animals.push(animal);
-         }
-        }
-        
+     }
+
 }
 
 
