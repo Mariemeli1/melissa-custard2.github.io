@@ -77,8 +77,7 @@ function add(animals, animal){
                 return false; //return false
             }
         }
-     }
-
+    }
 }
 
 

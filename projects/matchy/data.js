@@ -124,17 +124,17 @@ function getRandom(anims){
   //getting a random index of my input array using Math.random and returning it
   return Math.floor(Math.random() * anims.length);
 }
-//set my function call to a variable
-var arr = getRandom(animals);
-//pushing a random animals name to my friends array
-friends.push(animals[arr].name)
-//checking my friends array
-console.log(friends);
-//iterating through my animals array
-for(let i = 0; i < animals.length; i++){
+  //set my function call to a variable
+  var arr = getRandom(animals);
+  //pushing a random animals name to my friends array
+  friends.push(animals[arr].name)
+  //checking my friends array
+  console.log(friends);
+  //iterating through my animals array
+    for(let i = 0; i < animals.length; i++){
   //adding a property of friends to the current animal in my animals array with a value of friends
   animals[i].friends = friends;
-}
+    }
 console.log(animals);
 
 /**
