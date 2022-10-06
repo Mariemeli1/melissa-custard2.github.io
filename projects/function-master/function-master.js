@@ -153,10 +153,14 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-    if(object.hasOwnProperty(name)){
-        return true;
-    }else{
-        return false;
+    //if objects friends is undefined
+    if(object.friends === undefined){
+        return false; //return false
+        //else if objects friend includes name
+    }else if(object.friends.includes(name)){ 
+    return true; //return true
+    }else{ //else return false
+        return false
     }
 }
 
@@ -165,7 +169,20 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    //set a variable to an empty array
+    var arr = [];
+    //iterating through input array
+    for(let i = 0; i < array.length; i++){
+        //if current friend in array does not include name
+    if(!(array[i].friends.includes(name))){
+        //if current name in array is not in name
+        if(!(array[i].name === name)){
+            //push array names into array
+          arr.push(array[i].name);
+        }
+    }
+    }//return array
+    return arr;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -173,7 +190,12 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    //set obj to input object
+    var obj = object;
+    //set objects keys to input value
+    object[key] = value;
+    //return object
+    return obj;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -181,7 +203,18 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    //iterating through my input object
+   for(let key in object){
+    //iterating through my input array
+        for(let i = 0; i < array.length; i++){
+            //if current item in array is strictly equal to key
+          if(array[i] === key){
+            //delete objects keys
+            delete object[key];
+          }
+        }
+    }//return the object
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -189,7 +222,10 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+    //creating a new variable and used spread operator and remove duplicate items and set itback to an array
+    let unique = [...new Set(array)];
+     //return new array with duplicates removed
+    return unique;
 }
 
 //////////////////////////////////////////////////////////////////////
