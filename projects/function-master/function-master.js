@@ -34,7 +34,7 @@ function valuesToString(object) {
                arr.push(object[key]);
             } 
         }
-        //return the array in astring sepreated by spaces
+        //return the array in a string sepreated by spaces
        return arr.join(" ");
 }
 
@@ -98,23 +98,43 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+    //return ""Jake is a Dog"" by using dot notation to acces the name and species, charAt to get the first
+    //index of name and species, toUpperCase and slice method to capitalize each first letter and "is a" in between
+   return object.name.charAt(0).toUpperCase() + object.name.slice(1) + " is a " + object.species.charAt(0).toUpperCase() + object.species.slice(1);
 }
-
 //////////////////////////////////////////////////////////////////////
 // Function 9 - Maybe Noises /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+ //created an empty array
+    var arr = [];
+    //if object has noises property and object has more then 0 noises
+        if(object.hasOwnProperty('noises') && object.noises.length > 0){
+            //assign array to object.noises and turned it into a string seperated by spaces
+        arr = object.noises.join(" ");
+        } else{ //else
+        //return 'there are no noises'
+        return 'there are no noises';
+        }
+        //return the string/array
+    return arr;
 }
+
 
 //////////////////////////////////////////////////////////////////////
 // Function 10 - Has Words ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    //using includes method to see if string has 'word'
+    if(string.includes(word)){
+        //return true
+        return true;
+    }else{ //else
+        return false; //return false
+    }
+ 
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -122,7 +142,10 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+ //pushing name into the friends key from my object
+  object.friends.push(name);
+  //returning the object with the name pushed into the friends key array
+  return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -130,7 +153,11 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    if(object.hasOwnProperty(name)){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
