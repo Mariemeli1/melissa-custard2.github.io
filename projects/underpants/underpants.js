@@ -20,7 +20,10 @@ var _ = {};
 *   _.identity(5) === 5
 *   _.identity({a: "b"}) === {a: "b"}
 */
-
+_.identity = function(value){
+    //return input unchanged
+    return value;
+}
 
 /** _.typeOf
 * Arguments:
@@ -129,7 +132,22 @@ var _ = {};
 *   _.each(["a","b","c"], function(e,i,a){ console.log(e)});
 *      -> should log "a" "b" "c" to the console
 */
-
+_.each = (function(collection, func){
+    //determine if collection is an array
+    if(Array.isArray(collection)){
+        //iterate through input array
+        for(let i = 0; i < collection.length; i++){
+        //invoke input func, passing in current element, index and array
+        func(collection[i], i, collection);
+        }
+    }else{ //else its an object
+        //iterate through collection using a for in loop
+        for(var key in collection){
+            //invoke input func, passing in current key, value, and object
+           func(collection[key], key, collection);
+        }
+    }
+})
 
 /** _.unique
 * Arguments:
