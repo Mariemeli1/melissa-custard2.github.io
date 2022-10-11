@@ -44,8 +44,20 @@ _.identity = function(value){
 * _.typeOf("javascript") -> "string"
 * _.typeOf([1,2,3]) -> "array"
 */
-
-
+_.typeOf = function(value){
+    //determining if value is an array , if it is return array in a string
+   if(Array.isArray(value)){
+    return "array";
+    //determining if value is null , if it is return null in a string
+   } else if (value === null){
+    return "null";
+    //determining if value is undefined , if it is return undefined in a string
+   } else if (value === undefined){
+    return "undefined";
+   } else { //else return typeof value
+    return typeof value;
+   }
+}
 /** _.first
 * Arguments:
 *   1) An array
@@ -63,7 +75,18 @@ _.identity = function(value){
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
+_.first = function(arr, num){
+   if(Array.isArray(arr) === false){
+    return [];
+   } else if(NaN(num)){
+    return arr[0];
+   } else if(num < 0){
+    
+   }else if (num > arr.length){
 
+   }
+
+}
 
 /** _.last
 * Arguments:
@@ -82,7 +105,14 @@ _.identity = function(value){
 *   _.last(["a", "b", "c"], 1) -> "c"
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
-
+_.last = function(arr, num){
+    if(Array.isArray(arr) === false){
+        return [];
+    }
+    if(NaN(num)){
+        return arr.length -1;
+    }
+}
 
 /** _.indexOf
 * Arguments:
@@ -260,7 +290,56 @@ _.each = (function(collection, func){
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
+_.every = function(collection, func){
+   
+    //determine if func was not passed in
+    if(func === undefined ){
+        //determine if collection is an array
+        if(Array.isArray(collection)){
+            //iterate through collections array
+            for(let i = 0; i < collection.length; i++){
+                //determine if collection[i] is truthy
+                if(!collection[i]){
+                    //return false;
+                    return false;
+                }
+            }
+        } else { //else
+            //iterate through object
+            for(let key in collection){
+                //determine if collection[key] is truthy
+                if(!collection[key]){
+                    //return false;
+                    return false;
+                }
+            }
+        }
 
+    } else{ //else
+        //determine if collection is an array
+        if(Array.isArray(collection)){
+            //iterate through collections array
+            for(let i = 0; i < collection.length; i++){
+                //determine if invoking func on the params is not true
+                if(func(collection[i], i, collection) == false){
+                    //return false
+                    return false;
+                }
+            }
+        } else{ //else its an object
+            //iterate through object
+            for(let key in collection){
+                //determine if invoking func on the params is not true
+                if(func(collection[key], key, collection) === false)
+                {   //return false;
+                    return false;
+                }
+            }
+
+        }
+    }//return true
+    return true;
+}
 
 /** _.some
 * Arguments:
@@ -282,7 +361,56 @@ _.each = (function(collection, func){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+_.some = function(collection, func){
+   
+    //determine if func was not passed in
+    if(func === undefined ){
+        //determine if collection is an array
+        if(Array.isArray(collection)){
+            //iterate through collections array
+            for(let i = 0; i < collection.length; i++){
+                //determine if collection[i] is truthy
+                if(collection[i]){
+                    //return true;
+                    return true;
+                }
+            }
+        } else { //else
+            //iterate through object
+            for(let key in collection){
+                //determine if collection[key] is truthy
+                if(collection[key]){
+                    //return true;
+                    return true;
+                }
+            }
+        }
 
+    } else{ //else
+        //determine if collection is an array
+        if(Array.isArray(collection)){
+            //iterate through collections array
+            for(let i = 0; i < collection.length; i++){
+                //determine if invoking func on the params is true
+                if(func(collection[i], i, collection) === true){
+                    //return true
+                    return true;
+                }
+            }
+        } else{ //else its an object
+            //iterate through object
+            for(let key in collection){
+                //determine if invoking func on the params is true
+                if(func(collection[key], key, collection) === true)
+                {   //return true;
+                    return true;
+                }
+            }
+
+        }
+    }//return false
+    return false;
+}
 
 /** _.reduce
 * Arguments:
