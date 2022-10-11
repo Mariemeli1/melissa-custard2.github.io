@@ -3,6 +3,10 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
+
+
+
+
 var _ = {};
 
 
@@ -76,16 +80,22 @@ _.typeOf = function(value){
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 _.first = function(arr, num){
+    //if array is not an array
    if(Array.isArray(arr) === false){
+    //return empty array
     return [];
-   } else if(NaN(num)){
+   } //if num is undefined
+    if(num === undefined){
+    //return the first element in array
     return arr[0];
-   } else if(num < 0){
-    
-   }else if (num > arr.length){
-
-   }
-
+   } //if num is negative
+    if(num < 0){
+        return [];
+   }//if num is greater than array.length
+    if (num > arr.length){
+        return arr;
+   }//return arr sliced starting at 0 and ending at num
+   return arr.slice(0, num);
 }
 
 /** _.last
@@ -106,12 +116,24 @@ _.first = function(arr, num){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 _.last = function(arr, num){
+    //if array is not an array
     if(Array.isArray(arr) === false){
+        //return an empty array
         return [];
-    }
-    if(NaN(num)){
-        return arr.length -1;
-    }
+    } //if num is undefined
+    if(num === undefined){
+        //return last element of array
+        return arr[arr.length - 1];
+    }//if num is less than 0
+    if(num < 0){
+        //return empty array
+        return [];
+    }//if num is greater than arr.length
+    if(num > arr.length){
+        //return arr
+        return arr;
+    }//returning array sliced from last element in array usisng negative
+    return arr.slice(-2);
 }
 
 /** _.indexOf
@@ -129,6 +151,17 @@ _.last = function(arr, num){
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
+_.indexOf = function(arr, value){
+    //iterated through array
+    for(let i = 0; i < arr.length; i++){
+        //if array includes value
+        if(arr[i] === value){
+            //return index
+              return i;
+        } 
+    } //return -1 if value is not an array
+    return -1;
+}
 
 
 /** _.contains
@@ -145,6 +178,18 @@ _.last = function(arr, num){
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+_.contains = function(arr, value){
+    //iterate through my arr
+    for(let i = 0; i < arr.length; i++){
+        //ternary operator in a if statment checking if  array contains value if it does return true if not return false
+        if(arr[i] === value ? true : false){
+            //return true
+        return true
+        }
+    }//return false;
+    return false;
+}
+
 
 
 /** _.each
@@ -188,7 +233,12 @@ _.each = (function(collection, func){
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
-
+_.unique = function(arr){
+    //creating a new variable and used spread operator and remove duplicate items and set it back to an array
+    let unique = [...new Set(arr)];
+     //return new array with duplicates removed
+    return unique;
+}
 
 /** _.filter
 * Arguments:
@@ -205,8 +255,19 @@ _.each = (function(collection, func){
 * Extra Credit:
 *   use _.each in your implementation
 */
-
-
+_.filter = function(arr, func){
+    //create a empty array 
+    var newArr = [];
+    //iterate through array
+    for(let i = 0; i < arr.length; i++){
+        //checking if func for each element in array is passing in the element, index and array
+       if(func(arr[i], i, arr)){
+        //push element in newArr
+        newArr.push(arr[i]);
+        }
+    }//return newArr
+    return newArr;
+}
 /** _.reject
 * Arguments:
 *   1) An array
@@ -219,7 +280,18 @@ _.each = (function(collection, func){
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-
+_.reject = function(arr, func){
+    var newArr = [];
+    //iterate through array
+    for(let i = 0; i < arr.length; i++){
+    //checking if func for each element in array is not passing in the element, index and array
+        if(func(arr[i], i, arr) === false){
+    //push element in newArr
+        newArr.push(arr[i]);
+        }
+    }//return newArr
+    return newArr;
+}
 
 /** _.partition
 * Arguments:
@@ -239,7 +311,23 @@ _.each = (function(collection, func){
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+_.partition = function(arr, func){
+    //create a new aray set to an array with a sub array
+    let newArr = [[],[]];
+    //iterate through arr
+    for(let i = 0; i < arr.length; i++){
+        //checking if func for each element in array is passing in the element, index and array
+        if(func(arr[i], i, arr)){
+            //pushing in the array element to the first array in my newArr
+           newArr[0].push(arr[i]);
+          //checking if func for each element in array is not passing in the element, index and array
+        }else if(func(arr[i], i, arr) === false){
+            //pushing in the array element to my second array in my newArr
+            newArr[1].push(arr[i]);
+        }
+    }//return newArr
+    return newArr;
+}
 
 /** _.map
 * Arguments:
@@ -256,6 +344,29 @@ _.each = (function(collection, func){
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
+_.map = function(collection, func){
+    //create a new array set to a empty array
+    var newArr = [];
+    //determining if collection is an array
+    if(Array.isArray(collection)){
+    //iterate through collection array
+        for(let i = 0; i < collection.length; i++){
+        //invoke input func, passing in current element, index and array
+         func(collection[i], i, collection)
+         //pushing in current element, index and array into my new array
+        newArr.push(func(collection[i], i , collection));
+        }
+    } else {//else
+        //iterating through collection object
+        for(let key in collection){
+            //invoke input func, passing in the value, key and object
+            func(collection[key], key, collection)
+            //pushing in the value,key and object into my newARR
+            newArr.push(func(collection[key], key, collection));
+        }
+    }//returning new array
+    return newArr;
+}  
 
 
 /** _.pluck
@@ -269,6 +380,15 @@ _.each = (function(collection, func){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+//creating an array to later return
+let newArr = [];
+
+_.pluck = function(arr, prop){
+    let plucky = arr.map(function(){
+        return arr[prop];
+    })
+    return plucky;
+}
 
 /** _.every
 * Arguments:
