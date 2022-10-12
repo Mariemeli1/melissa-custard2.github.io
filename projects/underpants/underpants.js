@@ -94,7 +94,7 @@ _.first = function(arr, num){
    }//if num is greater than array.length
     if (num > arr.length){
         return arr;
-   }//return arr sliced starting at 0 and ending at num
+   }//return the first number item of array using slice 
    return arr.slice(0, num);
 }
 
@@ -132,7 +132,7 @@ _.last = function(arr, num){
     if(num > arr.length){
         //return arr
         return arr;
-    }//returning array sliced from last element in array usisng negative
+    }//return the last number item of array using slice method and a negative number
     return arr.slice(-2);
 }
 
@@ -260,7 +260,7 @@ _.filter = function(arr, func){
     var newArr = [];
     //iterate through array
     for(let i = 0; i < arr.length; i++){
-        //checking if func for each element in array is passing in the element, index and array
+        //determine if invoking func on the params is true
        if(func(arr[i], i, arr)){
         //push element in newArr
         newArr.push(arr[i]);
@@ -284,7 +284,7 @@ _.reject = function(arr, func){
     var newArr = [];
     //iterate through array
     for(let i = 0; i < arr.length; i++){
-    //checking if func for each element in array is not passing in the element, index and array
+    //determine if invoking func on the params is not true
         if(func(arr[i], i, arr) === false){
     //push element in newArr
         newArr.push(arr[i]);
@@ -316,11 +316,11 @@ _.partition = function(arr, func){
     let newArr = [[],[]];
     //iterate through arr
     for(let i = 0; i < arr.length; i++){
-        //checking if func for each element in array is passing in the element, index and array
+        //checking if invoking func for each element passing in the element, index and array is true
         if(func(arr[i], i, arr)){
             //pushing in the array element to the first array in my newArr
            newArr[0].push(arr[i]);
-          //checking if func for each element in array is not passing in the element, index and array
+        //checking if invoking func for each element passing in the element, index and array is not true
         }else if(func(arr[i], i, arr) === false){
             //pushing in the array element to my second array in my newArr
             newArr[1].push(arr[i]);
@@ -382,7 +382,7 @@ _.map = function(collection, func){
 
 
 _.pluck = function(arr, prop){
-    //using map to return an array   containg the value of propert for every element in array
+    //using map to return an array containing the value of property for every element in array
     return _.map(arr, function(elm, ind, col){
         //returning the property for every element in array
         return elm[prop];
@@ -588,7 +588,7 @@ _.reduce = function(arr, func, seed){
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 _.extend = function(obj1, obj2, obj3){
-    //using Object.assign to pass in propteries from obj2 and obj3 into obj1
+    //using Object.assign to pass in properties from obj2 and obj3 into obj1
     Object.assign(obj1, obj2, obj3);
     //return obj1 with all the properties passed in
     return obj1;
