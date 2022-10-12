@@ -380,14 +380,13 @@ _.map = function(collection, func){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
-//creating an array to later return
-let newArr = [];
 
 _.pluck = function(arr, prop){
-    let plucky = arr.map(function(){
-        return arr[prop];
+    //using map to return an array   containg the value of propert for every element in array
+    return _.map(arr, function(elm, ind, col){
+        //returning the property for every element in array
+        return elm[prop];
     })
-    return plucky;
 }
 
 /** _.every
@@ -550,7 +549,29 @@ _.some = function(collection, func){
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-
+_.reduce = function(arr, func, seed){
+    //create result variable
+    let result;
+    //determine if seed was not given a value
+    if(seed === undefined){
+    //assign result value to first value in array
+    result = arr[0];
+    //iterate through input array starting at the 1 index
+        for(let i = 1; i < arr.length; i++){
+        //assign result to function call passing in previous result, element index, and the whole array
+       result = func(result, arr[i], i, arr);
+        }
+    } else {
+        //assign result to the seed value
+        result = seed;
+        //iterate through array
+        for(let i = 0; i < arr.length; i++){
+            //assign result to function call passing in previous result, element index, and the whole array
+            result = func(result, arr[i], i, arr);
+        }
+    }//return result
+    return result;
+}
 
 /** _.extend
 * Arguments:
@@ -566,6 +587,12 @@ _.some = function(collection, func){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+_.extend = function(obj1, obj2, obj3){
+    //using Object.assign to pass in propteries from obj2 and obj3 into obj1
+    Object.assign(obj1, obj2, obj3);
+    //return obj1 with all the properties passed in
+    return obj1;
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
