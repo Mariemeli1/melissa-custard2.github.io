@@ -91,14 +91,16 @@ var firstLetterCount = function(array, letter){
 var friendFirstLetterCount = function(array, customer, letter) {
     //implement _.filter() to return the number of the customers friends first letter that begin with the input letter
     let homie = _.filter(array, function(customer, index, array){
-        //looping through my customers array
-        for(let i = 0; i < customer.length; i++){
-            //first letter of customer name that strictly equals the letter using lowercase method
-            customer[i].name[0].toLowerCase() === letter.toLowerCase();
-            //using a nested for loop to iterate through customers friends array
-            for(let v = 0; v < customer.friends.length; v++){
+        //iterate through customers array
+        for(let i = 0; i < customers.length; i++){
+            //determine if customers has a friend array
+            if(customers[i] === customer.friends){
+            //using a for loop to iterate through customers friends array
+                for(let v = 0; v < customers[i].friends.length; v++){
                 //returning the first letter of customers friends first letter of names that begines with the input letter
-                return customer.friends[v].name[0].toLowerCase() === letter.toLowerCase();
+                return customers.friends.name[0].toLowerCase() === letter.toLowerCase();
+                
+                }
             }
         }
     });
