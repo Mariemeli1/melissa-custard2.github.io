@@ -3,7 +3,7 @@
 'use strict';
 
 var customers = require('./data/customers.json');
-var _ = require(/* Replace this with the name of your lodown! */);
+var _ = require('underbar');
 
 /**
  * 1. Import your lodown module using the require() method,
@@ -16,26 +16,94 @@ var _ = require(/* Replace this with the name of your lodown! */);
  *
  * 4. To test your work, run the following command in your terminal:
  *
- *    npm start --prefix ./<YOUR_GITHUB_FOLDER/projects/let-s-get-functional
+ *    npm start --prefix ./melissa-custard2.github.io/projects/let-s-get-functional
  *
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
 
 var maleCount = function(array) {
+    //implement _.filter() to return an array of only male customers
+    let males = _.filter(array, function(customer, index, array){
+        //return the input character 
+        return customer.gender === 'male';
+    });
+    return males.length;
+};
+
+var femaleCount = function(array) {
+    //implement _.reduce() to return number of only female customers
+    return _.reduce(array, function(acc, current){
+        ///determining if current gender is female
+        if(current.gender === 'female'){
+            //increment accumulator
+            acc++;
+        }//return accumulator
+        return acc;
+    },0);
 
 };
 
-var femaleCount;
+var oldestCustomer = function(array) {
+    //implement _.reduce() to return the oldest customers name
+    let old = _.reduce(array, function(acc, current){
+        //if the current age is greater then or equal to the accumulators age
+        if(current.age >= acc.age){
+            //assign accumulator to the oldest customers name
+            acc = current.name;
+        }//return acc(oldest customers name)
+        return acc;
+    });//return the variable old
+    return old;
+};
 
-var oldestCustomer;
 
-var youngestCustomer;
+var youngestCustomer = function(array){
+     //implement _.reduce() to return the oldest customers name
+     let youngin = _.reduce(array, function(acc, current){
+        //if the acc age is less than current age
+        if(acc.age < current.age){
+            //assign current to the youngest customers name
+            current = acc.name;
+        }//return current 
+        return current;
+    });//return the variable youngin
+    return youngin;
+};
 
-var averageBalance;
+var averageBalance = function(array){
+  let sum = _.reduce(array, function(acc, current){
+        return acc += parseFloat(current.balance.replace(/[$,]/g, ""));
+    }, 0)
+    return sum / array.length;
+};
 
-var firstLetterCount;
+var firstLetterCount = function(array, letter){
+     //implement _.filter() to return the number of first letter that start with the given input letter
+     let first = _.filter(array, function(customer, index, array){
+        //return the first letter of customer name that strictly equals the letter using lowercase method
+        return customer.name[0].toLowerCase() === letter.toLowerCase();
+            
+    });
+    //return the number of first letters that start with the given input letter
+    return first.length;
+};
 
-var friendFirstLetterCount;
+var friendFirstLetterCount = function(array, customer, letter) {
+    //implement _.filter() to return the number of the customers friends first letter that begin with the input letter
+    let homie = _.filter(array, function(customer, index, array){
+        //looping through my customers array
+        for(let i = 0; i < customer.length; i++){
+            //first letter of customer name that strictly equals the letter using lowercase method
+            customer[i].name[0].toLowerCase() === letter.toLowerCase();
+            //using a nested for loop to iterate through customers friends array
+            for(let v = 0; v < customer.friends.length; v++){
+                //returning the first letter of customers friends first letter of names that begines with the input letter
+                return customer.friends[v].name[0].toLowerCase() === letter.toLowerCase();
+            }
+        }
+    });
+    return homie.length;
+};
 
 var friendsCount;
 
