@@ -99,13 +99,14 @@ var friendFirstLetterCount = function(array, customer, letter) {
                 for(let v = 0; v < array[i].friends.length; v++){
                 //returning the first letter of customers friends first letter of names that begins with the input letter
                  if(array[i].friends[v].name[0].toLowerCase() === letter.toLowerCase()){
+                    //increment count variable
                     count++;
                  };
                 
                 }
             }
         }
-    
+    //return count
     return count;
 };
 
@@ -126,7 +127,9 @@ var friendsCount = function(array, name){
     return output;
 };
 
-var topThreeTags;
+var topThreeTags = function(){
+    
+};
 
 var genderCount;
 
