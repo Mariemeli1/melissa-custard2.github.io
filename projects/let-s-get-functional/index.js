@@ -89,25 +89,42 @@ var firstLetterCount = function(array, letter){
 };
 
 var friendFirstLetterCount = function(array, customer, letter) {
-    //implement _.filter() to return the number of the customers friends first letter that begin with the input letter
-    let homie = _.filter(array, function(customer, index, array){
+    //creating a count variable
+     var count = 0;
         //iterate through customers array
-        for(let i = 0; i < customers.length; i++){
-            //determine if customers has a friend array
-            if(customers[i] === customer.friends){
+        for(let i = 0; i < array.length; i++){
+            //determine if current customer name in array  has a name of customer
+            if(array[i].name === customer){
             //using a for loop to iterate through customers friends array
-                for(let v = 0; v < customers[i].friends.length; v++){
-                //returning the first letter of customers friends first letter of names that begines with the input letter
-                return customers.friends.name[0].toLowerCase() === letter.toLowerCase();
+                for(let v = 0; v < array[i].friends.length; v++){
+                //returning the first letter of customers friends first letter of names that begins with the input letter
+                 if(array[i].friends[v].name[0].toLowerCase() === letter.toLowerCase()){
+                    count++;
+                 };
                 
                 }
             }
         }
-    });
-    return homie.length;
+    
+    return count;
 };
 
-var friendsCount;
+var friendsCount = function(array, name){
+    //create an array to later return
+    var output = [];
+    //loop through array
+    for(let i = 0; i < array.length; i++){
+       //loop through current customers to find friends array
+       for(let m = 0; m < array[i].friends.length; m++){
+        //check if current customer friends array has a name of the given input name
+        if(array[i].friends[m].name === name){
+            //pushing in the name of the customer who has the friend with a name of input name
+            output.push(array[i].name);
+        }
+       }
+    }//return output array;
+    return output;
+};
 
 var topThreeTags;
 

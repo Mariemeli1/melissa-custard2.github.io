@@ -5,11 +5,29 @@
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
 var factorial = function(n) {
+  //if input number is strictly equal to 0
+  if(n === 0){
+    //return 1
+    return 1;
+    //else if n is less than 0
+  } else if( n < 0){
+    //return null
+    return null;
+  } //return input times the function call with n - 1
+  return n * factorial(n - 1);
 };
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
-var sum = function(array) {
+var sum = function(array, num=0) {
+  //if array.length is strictly equal to 0
+  if(array.length === 0){
+    //return default parameter
+    return num;
+  }//increment and assign default parameter to the first inde of array
+  num += array[0];
+  //return the function call with array sliced at index 1, and return default parameter
+  return sum(array.slice(1), num);
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
@@ -19,12 +37,42 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  //if input number is strictly equal to 0
+  if(n === 0){
+    //return true
+    return true;
+    //else if n is strictly equal to 1
+  } else if(n === 1){
+    //return false
+    return false;
+    //else if n is greater than 0
+  } else if(n > 0){
+    //return function call with input - 2
+    return isEven(n - 2);
+  } else {//else
+    //return function call with negativ input number
+    return isEven(-n);
+  }
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  //determine if input number is strictly equal to 0
+  if(n === 0){
+    //return 0
+    return 0;
+    //else if input number is greater than 0
+  } else if (n > 0){
+    //decrement and assign number to 1
+    n -= 1;
+    //else if input number is less than 0
+  } else if (n < 0) {
+    //increment and assign input number to 1
+    n += 1;
+  } //return input number plus the function call with input number passed in
+  return n + sumBelow(n);
 };
 
 // 6. Get the integers in range (x, y).
