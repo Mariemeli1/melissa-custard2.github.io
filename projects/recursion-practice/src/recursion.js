@@ -128,12 +128,16 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
-  if(n / 2 === 0){
-    return true;
-  } else {
+  //if n strictly equals 0
+  if(n === 0){
+    //returns false
     return false;
-  }
-
+    //else if n strictly equal 1
+  } else if (n === 1){
+    //return true
+    return true;
+  }//return the function call that divides n by 2 at each iteration until it hits the base case
+  return powerOfTwo(n/2);
 };
 
 // 9. Write a function that accepts a string a reverses it.
@@ -143,23 +147,29 @@ var reverse = function(string, output="") {
     //return output
   return output;
   }
-  //return output adding and assign the function call to it with string sliced and adding the string at the first character
-  return output += reverse(string.slice(-1)) + string.charAt(0);
+  //return the function call on string and slicing the string starting at the end and slicing 1 off
+  return output += string[string.length - 1] + reverse(string.slice(string, string.length - 1), output);
 };
 
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-
-    // remove non-alphanumeric characters and
-    // change the string to lowercase
-    string = string.replace(/[^a-z0-9]/i, '').toLowerCase();
-  
-    // compare the string to the reversed string (if not empty)
-    // `Array.from(str)` is ES6 syntax for creating array of string characters.
-    // The ES5 equivalent will be to use: `str.split('')`
-    return (string.length > 0) && Array.from(string).reverse().join('') === string;
-  
+//if string has a length of 0 return true
+if(string.length === 0){
+  return true
+}//if string has a length of 1 return true
+if(string.length === 1){
+  return true;
+}//if string includes spaces return true
+if(string.includes(" ")){
+  return true;
+}//make char at index 0 to lowercase and if its not equal to the char at the end lowercased return false
+if(string.charAt(0).toLowerCase() !== string.charAt(string.length - 1).toLowerCase()){
+  return false;
+}//set new variable equal to the first index through the last index
+  let str = string.slice(1, string.length - 1);
+  //return the function call
+  return palindrome(str);
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -173,7 +183,21 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
-var multiply = function(x, y) {
+var multiply = function(x, y, sum=0) {
+  
+  if(x === 0 || y === 0){
+   
+    return sum;
+  }
+  if(x < 0 && y < 0){
+    
+    sum -= x;
+    
+    return multiply(x, y + 1, sum);
+  }
+  sum += x;
+  
+  return multiply(x, y - 1, sum);
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -195,27 +219,74 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  //if both strings hav a length of 0
+  if(str1.length === 0 && str2.length === 0){
+    //return true
+    return true;
+  }//if the first indexes of string 1 and 2 dont match
+  if(str1[0] !== str2[0]){
+    //return false
+    return false;
+  }//return the function call with both parameters slicing off 1 at each iteration to compare
+  return compareStr(str1.slice(1), str2.slice(1));
+
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(str, output=[]){
+  //if length of string is 0
+if(str.length === 0){
+  //return output
+  return output;
+}//push first index of string into output
+output.push(str[0]);
+//return the function call slicing 1 on the string and passing in default param
+return createArray(str.slice(1), output);
 };
 
+
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
-};
+var reverseArr = function (array, output=[]) {
+  //if string length is equal to 0
+  if(array.length === 0){
+    //return output
+    return output;
+  }//add first element of array to the front of array using unshift
+  output.unshift(array[0]);
+  //return the function call slicing 1 and also passing in default param
+  return reverseArr(array.slice(1), output);
+  };
+
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
-var buildList = function(value, length) {
+var buildList = function(value, length, output=[]) {
+  //if length is 0
+  if(length === 0){
+    //return output
+    return output;
+  }//push value into output array
+  output.push(value);
+  //return the function call with paramaters passed in with length - 1 instead of length
+  return buildList(value, length - 1, output);
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
-var countOccurrence = function(array, value) {
+var countOccurrence = function(array, value, sum=0) {
+  //if length of array is 0
+  if(array.length === 0){
+    //return sum
+    return sum;
+  }//if first index of arrray is equal to the value
+  if(array[0] === value){
+    //add and assign 1 to sum
+    sum += 1;
+  }//return the function call with the next value at the first endex of array
+  return countOccurrence(array.slice(1), value, sum);
 };
 
 // 20. Write a recursive version of map.
@@ -261,13 +332,32 @@ var nthFibo = function(n) {
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
+var capitalizeWords = function(input, output=[]) {
+  //if input length is 0
+  if(input.length === 0){
+    //return default param
+    return output;
+  }//push in the first letter if array uppercased into new array
+  output.push(input[0].toUpperCase());
+  //return function call with input sliced at 1 and passing in default param
+  return capitalizeWords(input.slice(1), output);
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
+    //if array length is 0
+    if(array.length === 0){
+      //return an empty array
+      return [];
+    }
+    //created a variable and assigned it to the function call passing in the array sliced 
+    var capital = capitalizeFirst(array.slice(1));
+    //add first index of arrays 0 index and using the uppercase method and adding arrays 0 index. sliced
+    capital.unshift(array[0][0].toUpperCase() + array[0].slice(1));
+    return capital;
 };
+
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
@@ -288,7 +378,20 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj) {
+var letterTally = function(str, output={}) {
+  //if string length is 0
+if(str.length === 0){
+  //return default param
+  return output;
+}//if object key- first index of string - is tallied
+if(output[str[0]]){
+  //if object key- first index of string - is tallied add one to it
+  output[str[0]] += 1;
+}else{ //else
+  //add assign one to object key
+  output[str[0]] = 1;
+}//return function call slicing string at 1 and passing in output
+return letterTally(str.slice(1), output);
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
@@ -322,6 +425,7 @@ var alternateSign = function(array) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+
 };
 
 // *** EXTRA CREDIT ***

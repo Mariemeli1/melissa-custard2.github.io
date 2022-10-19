@@ -34,16 +34,34 @@ function reverseArrayInPlace() {
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
-
+function arrayToList(array) {
+  //crated a variable and set it to null
+    let rest = null;
+    //iterating through my array in reverse
+  for(let i = array.length - 1; i >= 0; i--){
+    //assigning rest to the object with value arrays index and rest:rest passed in
+    rest = {value: array[i], rest: rest}
+    
+  }//return rest
+  return rest;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray(list, output=[]) {
+  //if list.rest is null
+if(list.rest === null){
+  //push list.value into output array
+output.push(list.value)
+//return default param
+return output;
+}
+//pushing list.value into output array
+output.push(list.value)
+//returning the function call with list.rest and default param passed in
+return listToArray(list.rest, output);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
