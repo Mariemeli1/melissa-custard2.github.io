@@ -127,8 +127,32 @@ var friendsCount = function(array, name){
     return output;
 };
 
-var topThreeTags = function(){
-    
+var topThreeTags = function(array){
+    //create a object
+    var output = {};
+    //using each function on array 
+     _.each(array, function(object){
+        //using each function on object.tags 
+     _.each(object.tags, function(index){
+        //make they key at index equal the count of how many it finds
+        output[index] = (output[index]||0) + 1;
+    });
+ });
+ //create a variable with the map function that takes in object keys and returns an array ofthe sorted keys using the sort method
+ let hola =_.map(Object.keys(output), point => [point, output[point]]).sort((a, b) => a[1] - b[1])
+ //slicing the array at the length - 3
+ let adios = hola.slice(-3);
+ //iterating through adios
+    for(let i = 0; i < adios.length; i++){
+        //popping off the last element in each array at arrays index
+    adios[i].pop();
+    }
+    //assigning a variable to an array
+    let hi = [];
+    //assigning hi to itself concated with the o, 1st and secod index of adios array
+    hi = hi.concat(adios[0], adios[1], adios[2]);
+    //return hi
+    return hi;
 };
 
 var genderCount;

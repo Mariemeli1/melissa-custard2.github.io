@@ -77,7 +77,26 @@ var sumBelow = function(n) {
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
-var range = function(x, y) {
+var range = function(x, y, output=[]) {
+  //checking if x less than y minus one from y
+  if(x < y - 1){
+    //increment x
+    x++
+    //push x into output array
+    output.push(x);
+    //return the function call with parameters passed in
+    return range(x, y, output);
+    //else if x is ggreater than y add 1 to y
+  } else if (x > y + 1){
+    //decrement x
+    x--
+    //push x into output array
+    output.push(x);
+    //return the function call with the parameters passed in
+    return range(x, y, output);
+  }
+//return output
+  return output;
 };
 
 // 7. Compute the exponent of a number.
@@ -86,6 +105,22 @@ var range = function(x, y) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  //if exp is equal to 0
+  if(exp === 0){
+    //return 1
+    return 1;
+    //else if exp is equal to 1
+  }else if(exp === 1){
+    //return base
+    return base;
+    //else if exp is greater than 0
+  } else if(exp > 0){
+    //return the function call with parameters passed in and minusing 1 from the exp and multplying base
+    return exponent(base, exp - 1) * base;
+  } else { //else
+    //return 1 divided by the function call and negative exponent
+    return 1 / exponent(base, -exp);
+  }
 };
 
 // 8. Determine if a number is a power of two.
@@ -93,14 +128,38 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if(n / 2 === 0){
+    return true;
+  } else {
+    return false;
+  }
+
 };
 
 // 9. Write a function that accepts a string a reverses it.
-var reverse = function(string) {
+var reverse = function(string, output="") {
+  //if string is less than or equal to 0
+  if(string.length <= 0){
+    //return output
+  return output;
+  }
+  //return output adding and assign the function call to it with string sliced and adding the string at the first character
+  return output += reverse(string.slice(-1)) + string.charAt(0);
 };
+
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+
+    // remove non-alphanumeric characters and
+    // change the string to lowercase
+    string = string.replace(/[^a-z0-9]/i, '').toLowerCase();
+  
+    // compare the string to the reversed string (if not empty)
+    // `Array.from(str)` is ES6 syntax for creating array of string characters.
+    // The ES5 equivalent will be to use: `str.split('')`
+    return (string.length > 0) && Array.from(string).reverse().join('') === string;
+  
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
