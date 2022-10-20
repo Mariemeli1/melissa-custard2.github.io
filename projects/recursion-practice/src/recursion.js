@@ -400,6 +400,7 @@ return letterTally(str.slice(1), output);
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
 var compress = function(list) {
+  
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
@@ -424,8 +425,62 @@ var alternateSign = function(array) {
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
-
+var numToText = function(str, output='') {
+  //base
+if(str.length === 0){
+  return output;
+}
+//recursion
+//if string equals its "num"
+if(str[0] === '0'){
+  //add its word equivalent to the default param string
+  output += "zero"
+  //else if string equals its "num"
+} else if(str[0] === '1'){
+  //add its word equivalent to the default param string
+  output += "one"
+  //else if string equals its "num"
+} else if(str[0] === '2'){
+  //add its word equivalent to the default param string
+  output += "two"
+  //else if string equals its "num"
+} else if(str[0] === '3'){
+  //add its word equivalent to the default param string
+  output += "three"
+  //else if string equals its "num"
+} else if(str[0] === '4'){
+  //add its word equivalent to the default param string
+  output += "four"
+  //else if string equals its "num"
+} else if(str[0] === '5'){
+  //add its word equivalent to the default param string
+  output += "five"
+  //else if string equals its "num"
+} else if(str[0] === '6'){
+  //add its word equivalent to the default param string
+  output += "six"
+  //else if string equals its "num"
+} else if(str[0] === '7'){
+  //add its word equivalent to the default param string
+  output += "seven"
+  //else if string equals its "num"
+} else if(str[0] === '8'){
+  //add its word equivalent to the default param string
+  output += "eight"
+  //else if string equals its "num"
+} else if(str[0] === '9'){
+  //add its word equivalent to the default param string
+  output += "nine"
+  //else if string equals its "num"
+} else if(str[0] === '10'){
+  //add its word equivalent to the default param string
+  output += "ten"
+  //else 
+} else {
+  //add the first index of string to the output 
+  output += str[0];
+}//return the function call with string sliced at 1 with default param passed in
+  return numToText(str.slice(1), output);
 };
 
 // *** EXTRA CREDIT ***
