@@ -291,7 +291,17 @@ var countOccurrence = function(array, value, sum=0) {
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
-var rMap = function(array, callback) {
+var rMap = function(array, callback, output=[]) {
+  //if arry has a length of 0
+  if(array.length === 0){
+    //return output
+    return output;
+  }//assign input callback param to the first element in array multiplied by 2
+  callback = array[0] * 2;
+  //push callback into output
+  output.push(callback)
+  //return function call with array sliced at 1 and passing in the other paramaters
+  return rMap(array.slice(1), callback, output); 
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -327,7 +337,18 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  //if n is less than 0
+  if(n < 0){
+    //return null
+    return null;
+    //else if n is less than 2 and n is greater than or equal to 0
+  } else if(n < 2 && n >= 0){
+    //return n
+    return n;
+  }//return function call subtracting 1 from n and adding the invocation but subtracting 2 from n
+  return nthFibo(n - 1) + nthFibo(n - 2);
 };
+
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
@@ -399,8 +420,14 @@ return letterTally(str.slice(1), output);
 // elements should not be changed.
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
-var compress = function(list) {
-  
+var compress = function(list, output=[]) {
+  if(list.length === 0){
+    return output;
+  }
+  if (list[0] !== list[1]) {
+      output.push(list[0])
+  }
+  return compress(list.slice(1), output);
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
@@ -412,7 +439,18 @@ var augmentElements = function(array, aug) {
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+var minimizeZeroes = function(array, output=[]) {
+  //if array has a length of 0
+  if(array.length === 0){
+    //return default param
+  return output;
+  }//if first element of array is not strictly equal to second element of array
+  if(array[0] !== array[1]){
+    //push first element of array into output
+    output.push(array[0])
+  }
+//return the function call with array sliced at 1 and passing in the default param
+return minimizeZeroes(array.slice(1), output);
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
@@ -420,6 +458,30 @@ var minimizeZeroes = function(array) {
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
+  //checking if array length is 0
+  if (array.length === 0){ 
+    //return empty array
+    return [];
+  }
+  //created a var set it to the function call with array sliced at 0 and the last element of array
+  var list = alternateSign(array.slice(0, array.length-1));
+  //determining if array length remainder 2 is 0
+  if (array.length % 2 === 0) {
+    //nested conditional if array  last element is greater than 0
+    if (array[array.length - 1] > 0) {
+      //assign it to a negative
+      array[array.length - 1] = -array[array.length - 1];
+    }
+  } else {//else
+    //if last element is less than 0
+    if (array[array.length - 1] < 0) {
+      //assign it to a negative
+      array[array.length - 1] = -array[array.length - 1];
+    }
+  }//push in last element to list
+  list.push(array[array.length - 1]);
+  //return list
+  return list;
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.

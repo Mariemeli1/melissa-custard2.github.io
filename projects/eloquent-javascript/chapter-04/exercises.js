@@ -35,7 +35,7 @@ function reverseArrayInPlace() {
 ////////////////////////////////////////////////////////////////////////////////
 
 function arrayToList(array) {
-  //crated a variable and set it to null
+  //created a variable and set it to null
     let rest = null;
     //iterating through my array in reverse
   for(let i = array.length - 1; i >= 0; i--){
