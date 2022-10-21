@@ -155,7 +155,24 @@ var topThreeTags = function(array){
     return hi;
 };
 
-var genderCount;
+var genderCount = function(array){
+    //create a variable and use the reduce method to return a single value
+    let genderSum = array.reduce(function(acc, current){
+        //if object has a key of gender
+        if(acc[current.gender]){
+            //increment
+            acc[current.gender]++
+            //else
+        }else {
+            //assign to 1
+            acc[current.gender] = 1;
+        }//return accumulator
+        return acc;
+        //seed value of an object
+    }, {});
+    //return genderSum
+    return genderSum;
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
