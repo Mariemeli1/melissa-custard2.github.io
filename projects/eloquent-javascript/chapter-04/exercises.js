@@ -2,32 +2,71 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range() {
+function range(start, end, step) {
+  //create a new array to push all the values from start to end in
+  var newArray = [];
+  //if start is equal to end
+  if(start === end){
+    //return empty array
+    return newArray;
+  }//if step is not undefined 
+  if(step !== undefined){
+    //if step is less than 0
+    if(step < 0){
+      //return new array
+      return newArray;
+    }//iterate through start to end and add step to current index
+    for(let i = start; i <= end; i += step){
+      //pushing all the values from start to end into my newArray
+    newArray.push(i);
+    }//else
+  } else {//iterate through start to end and increment
+    for(let i = start; i <= end; i++){
+      //pushing all the values from start to end into my newArray
+    newArray.push(i);
+    }
+  }
 
+//return new array
+return newArray;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
-
-}
+function sum(array) {
+  //using the reduce method to return a single value
+  let sumNum = array.reduce(function(accumulator, value){
+    //returning the acc plus the current value to get the sum
+    return accumulator + value;
+  }, 0);
+  //return sumNum
+  return sumNum;
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
-
+function reverseArray(array) {
+  //create a new array
+var newArray = [];
+for(let i = array.length -1; i >= 0; i--){
+//push in array values in reverse to new array
+newArray.push(array[i]);
+}
+//return new Array
+return newArray;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
-
+function reverseArrayInPlace(array) {
+  //return array in reverse using the reverse method;
+return array.reverse();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -68,17 +107,38 @@ return listToArray(list.rest, output);
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
+function prepend(value, list) {
+  //create a new variable and assign it to function call with list inside
+  var newArray = listToArray(list);
+  //push value to front of array
+  newArray.unshift(value);
+//return arrayToList invokation with new Array passed in
+  return arrayToList(newArray);
+ }
+ 
 
-}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
-
+function nth(list, num) {
+  //create a new variable and assign it to list to array function call passing in list
+  var newArray = listToArray(list);
+  //if num is negative
+if(num <  0){
+  //return undefined
+return undefined;
+//else if num has a value of 0
+}else if (newArray[num] !== undefined){
+  //return first endex of array
+  return newArray[num];
+}//return new array
+return newArray;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // deepEqual ///////////////////////////////////////////////////////////////////
