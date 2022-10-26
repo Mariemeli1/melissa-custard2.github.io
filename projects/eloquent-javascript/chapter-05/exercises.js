@@ -26,9 +26,38 @@ function every() {
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection() {
-
+function dominantDirection(string) {
+  //create an array that will go from left to right
+  let ltr = [];
+   //create an array that will go from right to left
+let rtl = [];
+//iterate through input string
+  for(let i = 0; i < string.length; i++){
+    //create a variable and set it to the strings character code and iterate through array of script
+    let scriptName = characterScript(string.charCodeAt(i));
+    //if scriptName does not equal null
+    if(scriptName !== null){
+      //if script name direction is left to right
+      if(scriptName.direction === 'ltr'){
+        ///push the scriptName into the left to right array
+          ltr.push(scriptName);
+      } else{//else
+        //oush scriptName into rtl
+        rtl.push(scriptName);
+      }
+    }
+  }
+//compare the lengths of the ltr/rtl arrays
+if(ltr.length > rtl.length){
+  //return left to right
+  return 'ltr'
+}else {///else
+  //return right to left
+  return 'rtl';
 }
+}
+
+
 
 // /////////////////////////////////////////////////////////////////////////////
 //  //////////////////////////////////////////////////////
