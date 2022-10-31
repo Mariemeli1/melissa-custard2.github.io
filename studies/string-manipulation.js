@@ -5,13 +5,13 @@
  *1. There are different methods you can use on a string to manipulate/change it.
  */
 
- 1.//String Manipulation With Addition Operator//
+ 1.//String Manipulation With Template Literals//
  var favColor = 'Green';
  var favAnimal = 'White Tiger!';
  var favThings = `${'My favorite color is '}${favColor}${' and my favorite animal is a '}${favAnimal}` // Using template literals
  console.log(favThings); // My favorite color is Green and my favorite animal is a White Tiger!
 
- 2.//Slice() Method//
+ 2.//slice() Method//
  //The slice() method  returns a shallow copy of a portion of an array into a new array object selected from start to end
  // (end not included) where start and end represent the index of items in that array.
  // The original array will not be modified.
