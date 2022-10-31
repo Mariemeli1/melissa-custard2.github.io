@@ -6,7 +6,7 @@
  */
 
 1. //Ternary Operators//
-//Used to replace multiple lines of code with a single line, and is most often used to replace simple 
+//Used to replace multiple lines of code with a single line, and is most often used to replace 
 //if else statements.
 variable = (condition) ? expressionTrue :  expressionFalse; //Syntax 
 
